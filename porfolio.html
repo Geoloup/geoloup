@@ -1,1 +1,207 @@
-in the making please wait
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GALAXY PORTFOLIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "WDXL Lubrifont TC", sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      box-sizing: border-box;
+      z-index: 5;
+      background:black;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      text-transform: uppercase;
+    }
+
+    /* Intro screen */
+    #intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: fadeOut 2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
+    #intro h1 {
+      top:calc(50% - clamp(3rem, 12vw, 8rem));
+      font-size: clamp(3rem, 12vw, 8rem);
+      font-weight: bold;
+      color: #fff;
+      text-transform: uppercase;
+      position:absolute;
+      animation: zoomToHeader 3.5s ease-in-out forwards;
+      transform-origin: center;
+      white-space: nowrap;
+    }
+
+    @keyframes zoomToHeader {
+      0% { transform: scale(3); opacity: 0; }
+      30% { transform: scale(1.3); opacity: 1;}
+      100% {
+        transform: scale(0.4);
+        top:-20px;
+        background:black;
+        margin: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Portfolio */
+    #portfolio {
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 4s;
+      padding: 6rem 2rem 2rem; /* leave room for header */
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #111;
+      border: 2px solid;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeUp 1s forwards;
+    }
+
+    .card:nth-child(1) { border-color: #ff3b3b; animation-delay: 4.2s; }
+    .card:nth-child(2) { border-color: #ff9800; animation-delay: 4.4s; }
+    .card:nth-child(3) { border-color: #2196f3; animation-delay: 4.6s; }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .card-content h2 {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .type {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-content a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      border: 1px solid currentColor;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .card-content a:hover {
+      background: currentColor;
+      color: #000;
+    }
+
+    @keyframes fadeUp {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="intro">
+    <h1>GALAXY</h1>
+  </div>
+
+  <header>
+    <h1>GALAXY</h1>
+  </header>
+
+  <div id="portfolio">
+    <h1>My Projects</h1>
+    <div class="projects">
+      <div class="card">
+        <img src="https://geoloup.com/ic-hat.png" alt="Ic-hat project" />
+        <div class="card-content">
+          <h2>Ic-hat</h2>
+          <div class="type">Web</div>
+          <a href="https://geoloup.com/ic-hat.png" target="_blank">View Project</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://geoloup.com/clock.png" alt="clock project" />
+        <div class="card-content">
+          <h2>Clock</h2>
+          <div class="type">Web</div>
+          <a href="https://geoloup.com/clock.png" target="_blank">View Project</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://repviewer.geoloup.com/repviewer.png" alt="repviewer project" />
+        <div class="card-content">
+          <h2>Repviewer</h2>
+          <div class="type">App</div>
+          <a href="https://repviewer.geoloup.com" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
