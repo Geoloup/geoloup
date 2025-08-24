@@ -103,23 +103,28 @@
     }
 
     .card {
+      background: none;
+      border: none;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeUp 1s forwards;
+    }
+    
+    .card-inner {
       background: #111;
       border: 2px solid;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(255,255,255,0.1);
-      transform: translateY(50px);
-      opacity: 0;
-      animation: fadeUp 1s forwards;
       transform-style: preserve-3d;
       transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     }
 
-    .card:nth-child(1) { border-color: #ff3b3b; animation-delay: 4.2s; }
-    .card:nth-child(2) { border-color: #ff9800; animation-delay: 4.4s; }
-    .card:nth-child(3) { border-color: #2196f3; animation-delay: 4.6s; }
+    .card:nth-child(1) .card-inner { border-color: #ff3b3b; animation-delay: 4.2s; }
+    .card:nth-child(2) .card-inner { border-color: #ff9800; animation-delay: 4.4s; }
+    .card:nth-child(3) .card-inner { border-color: #2196f3; animation-delay: 4.6s; }
 
-    .card img {
+    .card-inner img {
       width: 100%;
       height: 180px;
       object-fit: cover;
@@ -179,29 +184,35 @@
     <h1>My Projects</h1>
     <div class="projects">
       <div class="card">
-        <img src="https://geoloup.com/ic-hat.png" alt="Ic-hat project" />
-        <div class="card-content">
-          <h2>Ic-hat</h2>
-          <div class="type">Web</div>
-          <a href="https://ic-hat.geoloup.com/" target="_blank">View Project</a>
+        <div class="card-inner">
+          <img src="https://geoloup.com/ic-hat.png" alt="Ic-hat project" />
+          <div class="card-content">
+            <h2>Ic-hat</h2>
+            <div class="type">Web</div>
+            <a href="https://ic-hat.geoloup.com/" target="_blank">View Project</a>
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <img src="https://geoloup.com/clock.png" alt="clock project" />
-        <div class="card-content">
-          <h2>Clock</h2>
-          <div class="type">Web</div>
-          <a href="https://franck403.github.io/phoneClock/" target="_blank">View Project</a>
+        <div class="card-inner">
+          <img src="https://geoloup.com/clock.png" alt="clock project" />
+          <div class="card-content">
+            <h2>Clock</h2>
+            <div class="type">Web</div>
+            <a href="https://franck403.github.io/phoneClock/" target="_blank">View Project</a>
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <img src="https://repviewer.geoloup.com/repviewer.png" alt="repviewer project" />
-        <div class="card-content">
-          <h2>Repviewer</h2>
-          <div class="type">App</div>
-          <a href="https://repviewer.geoloup.com" target="_blank">View Project</a>
+        <div class="card-inner">
+          <img src="https://repviewer.geoloup.com/repviewer.png" alt="repviewer project" />
+          <div class="card-content">
+            <h2>Repviewer</h2>
+            <div class="type">App</div>
+            <a href="https://repviewer.geoloup.com" target="_blank">View Project</a>
+          </div>
         </div>
       </div>
     </div>
@@ -209,28 +220,52 @@
 
   <script>
     const cards = document.querySelectorAll('.card');
+    let mousePosition = { x: 0, y: 0 };
+    let activeCard = null;
+
+    // A single mousemove listener on the entire window
+    window.addEventListener('mousemove', (e) => {
+      mousePosition.x = e.clientX;
+      mousePosition.y = e.clientY;
+    });
 
     cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        // Get card's position and dimensions
-        const rect = card.getBoundingClientRect();
-        // Calculate mouse position relative to the card's center
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+      const cardInner = card.querySelector('.card-inner');
+      const boundingBox = card.getBoundingClientRect();
 
-        // Determine rotation based on cursor position
-        const rotateY = x / (rect.width / 2) * 20;
-        const rotateX = -y / (rect.height / 2) * 20;
-
-        // Apply the 3D transform
-        card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-      });
-
+      // Reset transforms on mouseleave
       card.addEventListener('mouseleave', () => {
-        // Reset the transform on mouse leave
-        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        cardInner.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)';
+      });
+      
+      // Update the active card on mouseenter
+      card.addEventListener('mouseenter', () => {
+        activeCard = card;
       });
     });
+
+    // The animation loop that will handle the smooth movement
+    function animate() {
+      if (activeCard) {
+        const cardInner = activeCard.querySelector('.card-inner');
+        const { left, top, width, height } = activeCard.getBoundingClientRect();
+
+        // Calculate a consistent rotation based on mouse position relative to the card's center
+        const x = mousePosition.x - left - width / 2;
+        const y = mousePosition.y - top - height / 2;
+
+        const rotateY = x / (width / 2) * 20;
+        const rotateX = -y / (height / 2) * 20;
+        const rotateZ = x / (width / 2) * 5;
+        
+        // Apply the transform
+        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(1.02)`;
+      }
+
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
   </script>
 </body>
 </html>
