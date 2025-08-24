@@ -220,52 +220,27 @@
 
   <script>
     const cards = document.querySelectorAll('.card');
-    let mousePosition = { x: 0, y: 0 };
-    let activeCard = null;
-
-    // A single mousemove listener on the entire window
-    window.addEventListener('mousemove', (e) => {
-      mousePosition.x = e.clientX;
-      mousePosition.y = e.clientY;
-    });
 
     cards.forEach(card => {
       const cardInner = card.querySelector('.card-inner');
-      const boundingBox = card.getBoundingClientRect();
+      
+      card.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = card.getBoundingClientRect();
+        
+        // Calculate tilt based on mouse position
+        const rotateY = (e.clientX - (left + width / 2)) / (width / 2) * 20;
+        const rotateX = (e.clientY - (top + height / 2)) / (height / 2) * -20;
+        const rotateZ = (e.clientX - (left + width / 2)) / (width / 2) * 5;
 
-      // Reset transforms on mouseleave
+        // Apply the 3D transform to the inner element
+        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(1.02)`;
+      });
+
       card.addEventListener('mouseleave', () => {
+        // Reset the inner element's transform on mouse leave
         cardInner.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)';
       });
-      
-      // Update the active card on mouseenter
-      card.addEventListener('mouseenter', () => {
-        activeCard = card;
-      });
     });
-
-    // The animation loop that will handle the smooth movement
-    function animate() {
-      if (activeCard) {
-        const cardInner = activeCard.querySelector('.card-inner');
-        const { left, top, width, height } = activeCard.getBoundingClientRect();
-
-        // Calculate a consistent rotation based on mouse position relative to the card's center
-        const x = mousePosition.x - left - width / 2;
-        const y = mousePosition.y - top - height / 2;
-
-        const rotateY = x / (width / 2) * 20;
-        const rotateX = -y / (height / 2) * 20;
-        const rotateZ = x / (width / 2) * 5;
-        
-        // Apply the transform
-        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(1.02)`;
-      }
-
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
   </script>
 </body>
 </html>
