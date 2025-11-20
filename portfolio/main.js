@@ -4,39 +4,51 @@ const translations = {
     navHome: 'Home',
     navAbout: 'About',
     navProjects: 'Projects',
+    navTrailers: 'Trailers',
     tagline: 'Front-End Developer & Trailer maker',
     heroLocation: 'Québec, Canada',
-    yearsOld: 'years old',
     aboutGreeting: 'Hey there! 👋',
     aboutTitle: "I'm Galaxy",
     aboutText1:
       "I'm a passionate front-end web developer based in Québec, Canada. I love creating beautiful, interactive web experiences that bring ideas to life.",
     aboutText2: "When I'm not coding, I play games.",
     aboutText3:
-      'I started coding when I was 8–9 years old (yes, really!). Each project teaches me something new and helps me improve my skills.',
+      'I started coding in early 2019. Each project teaches me something new and helps me improve my skills.',
     projectsTitle: 'My Projects',
+    trailersTitle: 'My Trailers',
     repviewerDesc: 'Recipes viewer for Windows',
     ichatDesc: 'Chat that is open-source',
-    clockDesc: 'Real-time clock',
+    clockDesc: 'Clock',
+    trailer1Title: 'Gens Setup trailer',
+    trailer1Desc: 'Preminum server setup trailer made for Olangus studio.',
+    trailer2Title: 'Bedwars',
+    trailer2Desc:
+      'Simple spectator view filmed with replaymod edited on filmora 11.',
   },
   fr: {
     navHome: 'Accueil',
     navAbout: 'À propos',
     navProjects: 'Projets',
-    tagline: 'Développeur Web Front-End & Créateur de trailer',
+    navTrailers: 'Trailers',
+    tagline: 'Développeur Web Front-End & Créateur de trailers',
     heroLocation: 'Québec, Canada',
-    yearsOld: 'ans',
     aboutGreeting: 'Salut! 👋',
     aboutTitle: 'Je suis Galaxy',
     aboutText1:
-      "Je suis un développeur web front-end passionné basé à Québec. J'adore créer des expériences web interactives qui donnent vie aux idées.",
+      "Je suis un développeur web front-end passionné basé à Québec, Canada. J'adore créer des expériences web interactives qui donnent vie aux idées.",
     aboutText2: 'Quand je ne code pas, je joue à des jeux.',
     aboutText3:
-      "J'ai commencé le développement à 8–9 ans (oui, je sais !). Chaque projet m'apprend quelque chose de nouveau et m'aide à progresser.",
+      "J'ai commencé le développement au début de 2019. Chaque projet m'apprend quelque chose de nouveau et m'aide à améliorer mes compétences.",
     projectsTitle: 'Mes Projets',
+    trailersTitle: 'Mes Trailers',
     repviewerDesc: 'Visionneuse de recettes pour Windows',
     ichatDesc: 'Chat open-source',
-    clockDesc: 'Horloge en temps réel',
+    clockDesc: 'Horloge',
+    trailer1Title: 'Trailer Gens Setup',
+    trailer1Desc: 'Trailer de setup premium réalisé pour Olangus Studio.',
+    trailer2Title: 'Bedwars',
+    trailer2Desc:
+      'Vue de spectateur simple filmée avec ReplayMod et montée sur Filmora 11.',
   },
 };
 
@@ -65,23 +77,6 @@ function setLanguage(lang) {
       el.textContent = translations[lang][key];
     }
   });
-}
-
-// Set birthdate - using only month (change the month value: 0=January, 11=December)
-const birthMonth = 8; // January - CHANGE THIS TO YOUR BIRTH MONTH
-
-function calculateAge() {
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth();
-
-  let age = currentYear - 2010; // Adjust base year as needed
-
-  if (currentMonth < birthMonth) {
-    age--;
-  }
-
-  document.getElementById('age').textContent = age;
 }
 
 // Clock functionality
@@ -143,7 +138,6 @@ document.querySelectorAll('.navbar-links a').forEach((link) => {
 });
 
 // Update age and clock
-calculateAge();
 updateClock();
 setInterval(updateClock, 1000);
 
@@ -175,8 +169,10 @@ const observer = new IntersectionObserver((entries) => {
 observer.observe(document.querySelector('.about-content'));
 observer.observe(document.querySelector('.about-image-container'));
 
-// Observe section title
-observer.observe(document.querySelector('.section-title'));
+// Observe section titles
+document.querySelectorAll('.section-title').forEach((title) => {
+  observer.observe(title);
+});
 
 // Observe project cards with stagger effect
 const projectCards = document.querySelectorAll('.project-card');
@@ -184,3 +180,42 @@ projectCards.forEach((card, index) => {
   card.style.transitionDelay = `${index * 0.2}s`;
   observer.observe(card);
 });
+
+// Observe trailer cards with stagger effect
+const trailerCards = document.querySelectorAll('.trailer-card');
+trailerCards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.2}s`;
+  observer.observe(card);
+});
+
+// ===== Scroll lock for 6 seconds =====
+(function () {
+  if (window.scrollY != 0) {
+    return;
+  }
+  // Always scroll to top
+  window.scrollTo(0, 0);
+
+  // Lock overflow
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+
+  // Block all scroll methods (desktop + mobile + iOS)
+  function blockScroll(e) {
+    e.preventDefault();
+  }
+
+  window.addEventListener('wheel', blockScroll, { passive: false });
+  window.addEventListener('touchmove', blockScroll, { passive: false });
+  window.addEventListener('keydown', blockScroll, { passive: false });
+
+  // Unlock after 6 seconds
+  setTimeout(() => {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+
+    window.removeEventListener('wheel', blockScroll, { passive: false });
+    window.removeEventListener('touchmove', blockScroll, { passive: false });
+    window.removeEventListener('keydown', blockScroll, { passive: false });
+  }, 3000);
+})();
