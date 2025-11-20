@@ -182,19 +182,6 @@ body {
   margin-bottom: 15px;
 }
 
-.hero-age {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.hero-age i {
-  font-size: 1.5rem;
-}
-
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -231,7 +218,7 @@ body {
 .about-container {
   max-width: 1200px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 60% 40%;
   gap: 60px;
   align-items: center;
 }
@@ -277,6 +264,7 @@ body {
 .about-image-container.visible {
   opacity: 1;
   transform: translateX(0);
+  width: 400px;
 }
 
 .about-image {
@@ -412,6 +400,13 @@ body {
   transform: translateY(0);
 }
 
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
 .project-icon {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -441,6 +436,89 @@ body {
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 0.9rem;
+}
+
+/* Trailer Section */
+.trailer-section {
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.trailer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trailer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+}
+
+.trailer-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.trailer-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trailer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 20px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.trailer-info {
+  padding: 10px 0;
+}
+
+.trailer-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trailer-title i {
+  color: #832325;
+}
+
+.trailer-description {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
@@ -493,5 +571,9 @@ body {
 
   .about-title {
     font-size: 2rem;
+  }
+
+  .trailer-grid {
+    grid-template-columns: 1fr;
   }
 }
