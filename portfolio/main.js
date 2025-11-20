@@ -1,0 +1,186 @@
+// Translations
+const translations = {
+  en: {
+    navHome: 'Home',
+    navAbout: 'About',
+    navProjects: 'Projects',
+    tagline: 'Front-End Developer & Trailer maker',
+    heroLocation: 'Québec, Canada',
+    yearsOld: 'years old',
+    aboutGreeting: 'Hey there! 👋',
+    aboutTitle: "I'm Galaxy",
+    aboutText1:
+      "I'm a passionate front-end web developer based in Québec, Canada. I love creating beautiful, interactive web experiences that bring ideas to life.",
+    aboutText2: "When I'm not coding, I play games.",
+    aboutText3:
+      'I started coding when I was 8–9 years old (yes, really!). Each project teaches me something new and helps me improve my skills.',
+    projectsTitle: 'My Projects',
+    repviewerDesc: 'Recipes viewer for Windows',
+    ichatDesc: 'Chat that is open-source',
+    clockDesc: 'Real-time clock',
+  },
+  fr: {
+    navHome: 'Accueil',
+    navAbout: 'À propos',
+    navProjects: 'Projets',
+    tagline: 'Développeur Web Front-End & Créateur de trailer',
+    heroLocation: 'Québec, Canada',
+    yearsOld: 'ans',
+    aboutGreeting: 'Salut! 👋',
+    aboutTitle: 'Je suis Galaxy',
+    aboutText1:
+      "Je suis un développeur web front-end passionné basé à Québec. J'adore créer des expériences web interactives qui donnent vie aux idées.",
+    aboutText2: 'Quand je ne code pas, je joue à des jeux.',
+    aboutText3:
+      "J'ai commencé le développement à 8–9 ans (oui, je sais !). Chaque projet m'apprend quelque chose de nouveau et m'aide à progresser.",
+    projectsTitle: 'Mes Projets',
+    repviewerDesc: 'Visionneuse de recettes pour Windows',
+    ichatDesc: 'Chat open-source',
+    clockDesc: 'Horloge en temps réel',
+  },
+};
+
+// Detect browser language and set automatically
+let currentLang = 'en';
+const browserLang = navigator.language || navigator.userLanguage;
+if (browserLang.startsWith('fr')) {
+  currentLang = 'fr';
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+
+  // Update button states
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    }
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-translate]').forEach((el) => {
+    const key = el.getAttribute('data-translate');
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+}
+
+// Set birthdate - using only month (change the month value: 0=January, 11=December)
+const birthMonth = 8; // January - CHANGE THIS TO YOUR BIRTH MONTH
+
+function calculateAge() {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+
+  let age = currentYear - 2010; // Adjust base year as needed
+
+  if (currentMonth < birthMonth) {
+    age--;
+  }
+
+  document.getElementById('age').textContent = age;
+}
+
+// Clock functionality
+function updateClock() {
+  // Quebec time (EST/EDT - America/Toronto timezone)
+  const quebecTime = new Date().toLocaleString('en-US', {
+    timeZone: 'America/Toronto',
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
+  document.getElementById('heroTime').textContent = quebecTime;
+}
+
+// Navbar scroll effect
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  lastScroll = currentScroll;
+
+  // Update active nav link
+  const sections = document.querySelectorAll('section[id]');
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+
+    if (
+      currentScroll >= sectionTop &&
+      currentScroll < sectionTop + sectionHeight
+    ) {
+      document.querySelectorAll('.navbar-links a').forEach((link) => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+});
+
+// Smooth scroll for navbar links
+document.querySelectorAll('.navbar-links a').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Update age and clock
+calculateAge();
+updateClock();
+setInterval(updateClock, 1000);
+
+// Initialize language on page load
+setLanguage(currentLang);
+
+// Smooth scroll on click
+document.querySelector('.scroll-indicator').addEventListener('click', () => {
+  document
+    .querySelector('.about-section')
+    .scrollIntoView({ behavior: 'smooth' });
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.2,
+  rootMargin: '0px 0px -100px 0px',
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Observe about section
+observer.observe(document.querySelector('.about-content'));
+observer.observe(document.querySelector('.about-image-container'));
+
+// Observe section title
+observer.observe(document.querySelector('.section-title'));
+
+// Observe project cards with stagger effect
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.2}s`;
+  observer.observe(card);
+});
