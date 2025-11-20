@@ -25,6 +25,7 @@
         </li>
         <li><a href="#about" data-translate="navAbout">About</a></li>
         <li><a href="#projects" data-translate="navProjects">Projects</a></li>
+        <li><a href="#trailers" data-translate="navTrailers">Trailers</a></li>
       </ul>
       <div class="language-toggle">
         <button
@@ -61,13 +62,6 @@
         <div class="hero-location" data-translate="heroLocation">
           Québec, Canada
         </div>
-        <div class="hero-age">
-          <i class="bx bx-cake"></i>
-          <span
-            ><span id="age">--</span>
-            <span data-translate="yearsOld">years old</span></span
-          >
-        </div>
       </div>
       <i
         class="bx bx-chevron-down scroll-indicator animate__animated animate__flash animate__infinite animate__animated animate__fadeIn animate__delay-2s"
@@ -82,22 +76,9 @@
             Hey there! 👋
           </p>
           <h2 class="about-title" data-translate="aboutTitle">I'm Galaxy</h2>
-          <p class="about-text" data-translate="aboutText1">
-            I'm a passionate front-end web developer based in Québec, Canada. I
-            love creating beautiful, interactive web experiences that bring
-            ideas to life.
-          </p>
-          <p class="about-text" data-translate="aboutText2">
-            When I'm not coding, you'll find me exploring new technologies,
-            working on open-source projects, and constantly learning new ways to
-            build better applications.
-          </p>
-          <p class="about-text" data-translate="aboutText3">
-            My journey in web development is driven by curiosity and a desire to
-            create tools that make a difference. Every project is an opportunity
-            to learn something new and push the boundaries of what's possible on
-            the web.
-          </p>
+          <p class="about-text" data-translate="aboutText1">loading</p>
+          <p class="about-text" data-translate="aboutText2">loading</p>
+          <p class="about-text" data-translate="aboutText3">loading</p>
         </div>
         <div class="about-image-container">
           <div class="about-image">
@@ -114,6 +95,7 @@
           My Projects
         </h2>
         <div class="projects-grid">
+          <!-- Repviewer -->
           <div class="project-card">
             <div class="project-image">
               <img src="https://repviewer.geoloup.com/repviewer.png" alt="" />
@@ -121,11 +103,16 @@
                 Long-term maintenance
               </div>
             </div>
-            <i class="bx bx-code-alt project-icon"></i>
-            <h3 class="project-title">Repviewer</h3>
+
+            <div class="project-header">
+              <i class="bx bx-code-alt project-icon"></i>
+              <h3 class="project-title">Repviewer</h3>
+            </div>
+
             <p class="project-description" data-translate="repviewerDesc">
               Recipes viewer for Windows
             </p>
+
             <div class="project-tech">
               <span class="tech-tag">Node.JS</span>
               <span class="tech-tag">Electron</span>
@@ -133,38 +120,101 @@
             </div>
           </div>
 
+          <!-- Ic-hat -->
           <div class="project-card">
             <div class="project-image">
-              <img
-                src="
-              https://ic-hat.geoloup.com/img/ic-hat.png"
-                alt=""
-              />
+              <img src="https://ic-hat.geoloup.com/img/ic-hat.png" alt="" />
               <div class="status-label status-discontinued">Discontinued</div>
             </div>
-            <i class="bx bx-message-dots project-icon"></i>
-            <h3 class="project-title">Ic-hat</h3>
+
+            <div class="project-header">
+              <i class="bx bx-message-dots project-icon"></i>
+              <h3 class="project-title">Ic-hat</h3>
+            </div>
+
             <p class="project-description" data-translate="ichatDesc">
               Chat that is open-source
             </p>
+
             <div class="project-tech">
               <span class="tech-tag">Firebase</span>
               <span class="tech-tag">Web</span>
             </div>
           </div>
 
+          <!-- Clock -->
           <div class="project-card">
             <div class="project-image">
               <img src="https://geoloup.com/clock.png" alt="" />
             </div>
-            <i class="bx bx-time project-icon"></i>
-            <h3 class="project-title">Clock</h3>
+
+            <div class="project-header">
+              <i class="bx bx-time project-icon"></i>
+              <h3 class="project-title">Clock</h3>
+            </div>
+
             <p class="project-description" data-translate="clockDesc">
               Real-time clock
             </p>
+
             <div class="project-tech">
               <span class="tech-tag">Web</span>
               <span class="tech-tag">Open-Weather</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trailer Section -->
+    <section class="trailer-section" id="trailers">
+      <div class="trailer-container">
+        <h2
+          class="section-title trailer-section-title"
+          data-translate="trailersTitle"
+        >
+          My Trailers
+        </h2>
+        <div class="trailer-grid">
+          <!-- Trailer 1 -->
+          <div class="trailer-card">
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/Kejyov0kU4Y"
+                title="Trailer 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="trailer-info">
+              <h3 class="trailer-title">
+                <i class="bx bx-movie"></i>
+                <span data-translate="trailer1Title">Gens Setup trailer</span>
+              </h3>
+              <p class="trailer-description" data-translate="trailer1Desc">
+                Made for Olangus studio.
+              </p>
+            </div>
+          </div>
+
+          <!-- Trailer 2 -->
+          <div class="trailer-card">
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/_FiHPID72CM"
+                title="Trailer 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="trailer-info">
+              <h3 class="trailer-title">
+                <i class="bx bx-movie"></i>
+                <span data-translate="trailer2Title">Bedwars</span>
+              </h3>
+              <p class="trailer-description" data-translate="trailer2Desc">
+                Simple spectator view
+              </p>
             </div>
           </div>
         </div>
