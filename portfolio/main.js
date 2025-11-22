@@ -217,3 +217,23 @@ trailerCards.forEach((card, index) => {
     window.removeEventListener('keydown', blockScroll, { passive: false });
   }, 3000);
 })();
+
+document.querySelectorAll('.navbar-links a').forEach((link) => {
+  link.addEventListener('mouseenter', (e) => {
+    const rect = link.getBoundingClientRect();
+    const fromLeft = e.clientX - rect.left;
+    const fromRight = rect.right - e.clientX;
+
+    link.style.setProperty('--origin', fromLeft < fromRight ? 'left' : 'right');
+    link.classList.add('hovering');
+  });
+
+  link.addEventListener('mouseleave', (e) => {
+    const rect = link.getBoundingClientRect();
+    const toLeft = e.clientX - rect.left;
+    const toRight = rect.right - e.clientX;
+
+    link.style.setProperty('--origin', toLeft < toRight ? 'left' : 'right');
+    link.classList.remove('hovering');
+  });
+});
