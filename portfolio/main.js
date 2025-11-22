@@ -9,11 +9,10 @@ const translations = {
     heroLocation: 'Québec, Canada',
     aboutGreeting: 'Hey there! 👋',
     aboutTitle: "I'm Galaxy",
-    aboutText1:
-      "I'm a passionate front-end web developer based in Québec, Canada. I love creating beautiful, interactive web experiences that bring ideas to life.",
+    aboutText1: "I'm a front-end web developer based in Québec, Canada.",
     aboutText2: "When I'm not coding, I play games.",
     aboutText3:
-      'I started coding in early 2019. Each project teaches me something new and helps me improve my skills.',
+      'I started coding in early 2019. Each project teaches me something new.',
     projectsTitle: 'My Projects',
     trailersTitle: 'My Trailers',
     repviewerDesc: 'Recipes viewer for Windows',
@@ -34,11 +33,10 @@ const translations = {
     heroLocation: 'Québec, Canada',
     aboutGreeting: 'Salut! 👋',
     aboutTitle: 'Je suis Galaxy',
-    aboutText1:
-      "Je suis un développeur web front-end passionné basé à Québec, Canada. J'adore créer des expériences web interactives qui donnent vie aux idées.",
+    aboutText1: 'Je suis un développeur web front-end basé au Québec, Canada..',
     aboutText2: 'Quand je ne code pas, je joue à des jeux.',
     aboutText3:
-      "J'ai commencé le développement au début de 2019. Chaque projet m'apprend quelque chose de nouveau et m'aide à améliorer mes compétences.",
+      "J'ai commencé le développement au début de 2019. Chaque projet ma apprend un nouvelle chose.",
     projectsTitle: 'Mes Projets',
     trailersTitle: 'Mes Trailers',
     repviewerDesc: 'Visionneuse de recettes pour Windows',
