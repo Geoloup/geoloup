@@ -25,6 +25,7 @@
         </li>
         <li><a href="#about" data-translate="navAbout">About</a></li>
         <li><a href="#projects" data-translate="navProjects">Projects</a></li>
+        <li><a href="#discord" data-translate="navDiscord">Discord</a></li>
         <li><a href="#trailers" data-translate="navTrailers">Trailers</a></li>
       </ul>
       <div class="language-toggle">
@@ -160,6 +161,130 @@
             <div class="project-tech">
               <span class="tech-tag">Web</span>
               <span class="tech-tag">Open-Weather</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discord Section -->
+    <section class="discord-section" id="discord">
+      <div class="discord-container">
+        <h2 class="section-title" data-translate="discordTitle">Discord Community</h2>
+        
+        <div class="discord-categories">
+          <button class="category-btn active" onclick="filterDiscord('all')" data-category="all">
+            <i class='bx bx-grid-alt'></i>
+            <span data-translate="discordAll">All</span>
+          </button>
+          <button class="category-btn" onclick="filterDiscord('servers')" data-category="servers">
+            <i class='bx bxl-discord-alt'></i>
+            <span data-translate="discordServers">Servers</span>
+          </button>
+          <button class="category-btn" onclick="filterDiscord('bots')" data-category="bots">
+            <i class='bx bx-bot'></i>
+            <span data-translate="discordBots">Bots</span>
+          </button>
+        </div>
+
+        <div class="discord-grid" id="discordGrid">
+          <!-- Server Card 1 -->
+          <div class="discord-card" data-type="servers">
+            <div class="discord-banner">
+              <img src="https://cdn.discordapp.com/banners/1213658110414290954/d1d87b6d6aad707a92781b4d7c2184c1.png?size=600" alt="Server Banner" />
+            </div>
+            <div class="discord-avatar">
+              <img src="https://cdn.discordapp.com/avatars/1213658110414290954/f80ad6e479893122b82bdc588eac1d3d.webp?size=80" alt="Server Icon" />
+            </div>
+            <div class="discord-content">
+              <div class="discord-badge">SERVER</div>
+              <h3 class="discord-title" data-translate="discordServer1Title">Galaxy's Community</h3>
+              <p class="discord-description" data-translate="discordServer1Desc">
+                A friendly community for developers, gamers, and creative minds. Join us to share projects and have fun!
+              </p>
+              <div class="discord-footer">
+                <a href="https://discord.gg/aDmf56CFxc" class="discord-link" target="_blank">
+                  <i class='bx bxl-discord-alt'></i>
+                  <span data-translate="joinServer">Join Server</span>
+                </a>
+                <div class="discord-tags">
+                  <span class="discord-tag">Gaming</span>
+                  <span class="discord-tag">Dev</span>
+                </div>
+              </div>
+              <div class="hover-info">
+                <div class="hover-info-title">About this server:</div>
+                <div class="hover-info-text">
+                  Features include coding help channels, game nights, project showcases, and a welcoming community atmosphere.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bot Card 1 -->
+          <div class="discord-card" data-type="bots">
+            <div class="discord-banner">
+              <img src="https://cdn.discordapp.com/banners/1213658110414290954/d1d87b6d6aad707a92781b4d7c2184c1.png?size=600" alt="Bot Banner" />
+            </div>
+            <div class="discord-avatar">
+              <img src="https://cdn.discordapp.com/avatars/1213658110414290954/f80ad6e479893122b82bdc588eac1d3d.webp?size=80" alt="Bot Avatar" />
+            </div>
+            <div class="discord-content">
+              <div class="discord-badge">PRIVATE BOT</div>
+              <h3 class="discord-title" data-translate="discordBot1Title">Galaxy Bot</h3>
+              <p class="discord-description" data-translate="discordBot1Desc">
+                A private utility bot for ticket management, commission reviews, and auto channel message synchronization.
+              </p>
+              <div class="discord-footer">
+                <a href="https://discord.gg/aDmf56CFxc" class="discord-link" target="_blank">
+                  <i class='bx bxl-discord-alt'></i>
+                  <span data-translate="visitServer">Visit Server</span>
+                </a>
+                <div class="discord-tags">
+                  <span class="discord-tag">Tickets</span>
+                  <span class="discord-tag">Reviews</span>
+                  <span class="discord-tag">Sync</span>
+                </div>
+              </div>
+              <div class="hover-info">
+                <div class="hover-info-title">Bot Features:</div>
+                <div class="hover-info-text">
+                  Ticket system, commission review management, and automatic channel message synchronization for seamless communication.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Server Card 2 - Arcanium -->
+          <div class="discord-card" data-type="servers">
+            <div class="discord-banner">
+              <img src="https://cdn.discordapp.com/banners/1310718444357816460/40ebe81a865783930c8a1d82ce66a51d.png?size=600" alt="Arcanium Banner" />
+            </div>
+            <div class="discord-avatar">
+              <img src="https://cdn.discordapp.com/avatars/1310718444357816460/40ebe81a865783930c8a1d82ce66a51d.webp?size=128" alt="Arcanium Icon" />
+            </div>
+            <div class="discord-content">
+              <div class="discord-badge">SERVER</div>
+              <h3 class="discord-title" data-translate="discordServer2Title">Arcanium</h3>
+              <p class="discord-description" data-translate="discordServer2Desc">
+                A vibrant gaming community for anyone. Connect with gamers, share experiences, and enjoy various games together.
+              </p>
+              <div class="discord-footer">
+                <a href="https://discord.gg/GfYfAaQ3ac" class="discord-link" target="_blank">
+                  <i class='bx bxl-discord-alt'></i>
+                  <span data-translate="joinServer">Join Server</span>
+                </a>
+                <div class="discord-tags">
+                  <span class="discord-tag">Gaming</span>
+                  <span class="discord-tag">Community</span>
+                </div>
+              </div>
+              <div class="hover-info">
+                <div class="hover-info-title">Community Highlights:</div>
+                <div class="hover-info-text">
+                  Friendly atmosphere for all gamers. Play together, share tips, make friends, and enjoy a welcoming community for everyone.
+                </div>
+              </div>
             </div>
           </div>
         </div>

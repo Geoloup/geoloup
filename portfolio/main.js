@@ -4,6 +4,7 @@ const translations = {
     navHome: 'Home',
     navAbout: 'About',
     navProjects: 'Projects',
+    navDiscord: 'Discord',
     navTrailers: 'Trailers',
     tagline: 'Front-End Developer & Trailer maker',
     heroLocation: 'Québec, Canada',
@@ -11,33 +12,57 @@ const translations = {
     aboutTitle: "I'm Galaxy",
     aboutText1: "I'm a front-end web developer based in Québec, Canada.",
     aboutText2: "When I'm not coding, I play games.",
-    aboutText3:
-      'I started coding in early 2019. Each project teaches me something new.',
+    aboutText3: 'I started coding in early 2019. Each project teaches me something new.',
     projectsTitle: 'My Projects',
+    discordTitle: 'Discord Community',
+    discordAll: 'All',
+    discordServers: 'Servers',
+    discordBots: 'Bots',
+    discordServer1Title: "Olangus Studio",
+    discordServer1Desc: '🛠️ Olangus Studio | Custom Skripts, Builds & Exclusive Setups!',
+    discordServer2Title: 'Arcanium',
+    discordServer2Desc: 'A vibrant gaming community for anyone. Connect with gamers, share experiences, and enjoy various games together.',
+    discordBot1Title: 'Olangus Studio Bot',
+    discordBot1Desc: 'A private utility bot for ticket management, commission reviews, and auto channel message synchronization.',
+    joinServer: 'Join Server',
+    visitServer: 'Visit Server',
+    inviteBot: 'Invite Bot',
     trailersTitle: 'My Trailers',
     repviewerDesc: 'Recipes viewer for Windows',
     ichatDesc: 'Chat that is open-source',
     clockDesc: 'Clock',
     trailer1Title: 'Gens Setup trailer',
-    trailer1Desc: 'Preminum server setup trailer made for Olangus studio.',
+    trailer1Desc: 'Premium server setup trailer made for Olangus studio.',
     trailer2Title: 'Bedwars',
-    trailer2Desc:
-      'Simple spectator view filmed with replaymod edited on filmora 11.',
+    trailer2Desc: 'Simple spectator view filmed with replaymod edited on filmora 11.',
   },
   fr: {
     navHome: 'Accueil',
     navAbout: 'À propos',
     navProjects: 'Projets',
+    navDiscord: 'Discord',
     navTrailers: 'Trailers',
     tagline: 'Développeur Web Front-End & Créateur de trailers',
     heroLocation: 'Québec, Canada',
     aboutGreeting: 'Salut! 👋',
     aboutTitle: 'Je suis Galaxy',
-    aboutText1: 'Je suis un développeur web front-end basé au Québec, Canada..',
+    aboutText1: 'Je suis un développeur web front-end basé au Québec, Canada.',
     aboutText2: 'Quand je ne code pas, je joue à des jeux.',
-    aboutText3:
-      "J'ai commencé le développement au début de 2019. Chaque projet ma apprend un nouvelle chose.",
+    aboutText3: "J'ai commencé le développement au début de 2019. Chaque projet m'apprend une nouvelle chose.",
     projectsTitle: 'Mes Projets',
+    discordTitle: 'Communauté Discord',
+    discordAll: 'Tous',
+    discordServers: 'Serveurs',
+    discordBots: 'Bots',
+    discordServer1Title: 'Olangus Studio',
+    discordServer1Desc: "🛠️ Olangus Studio | Skripts, Builds & Setups exclusifs !",
+    discordServer2Title: 'Arcanium',
+    discordServer2Desc: 'Une communauté de jeu dynamique pour tous. Connectez-vous avec des joueurs et amusez-vous ensemble.',
+    discordBot1Title: 'Olangus Studio Bot',
+    discordBot1Desc: 'Un bot utilitaire privé pour la gestion de tickets, évaluations de commissions et synchronisation de messages.',
+    joinServer: 'Rejoindre',
+    visitServer: 'Visiter le serveur',
+    inviteBot: 'Inviter le Bot',
     trailersTitle: 'Mes Trailers',
     repviewerDesc: 'Visionneuse de recettes pour Windows',
     ichatDesc: 'Chat open-source',
@@ -45,8 +70,7 @@ const translations = {
     trailer1Title: 'Trailer Gens Setup',
     trailer1Desc: 'Trailer de setup premium réalisé pour Olangus Studio.',
     trailer2Title: 'Bedwars',
-    trailer2Desc:
-      'Vue de spectateur simple filmée avec ReplayMod et montée sur Filmora 11.',
+    trailer2Desc: 'Vue de spectateur simple filmée avec ReplayMod et montée sur Filmora 11.',
   },
 };
 
@@ -186,7 +210,39 @@ trailerCards.forEach((card, index) => {
   observer.observe(card);
 });
 
-// ===== Scroll lock for 6 seconds =====
+// Observe discord cards with stagger effect
+const discordCards = document.querySelectorAll('.discord-card');
+discordCards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.2}s`;
+  observer.observe(card);
+});
+
+// Discord filter functionality
+function filterDiscord(category) {
+  // Update button states
+  document.querySelectorAll('.category-btn').forEach((btn) => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-category') === category) {
+      btn.classList.add('active');
+    }
+  });
+
+  // Filter cards
+  const cards = document.querySelectorAll('.discord-card');
+  cards.forEach((card) => {
+    const cardType = card.getAttribute('data-type');
+    if (category === 'all' || cardType === category) {
+      card.style.display = 'block';
+      // Reset styles immediately so they don't stay hidden/moved from previous states
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ===== Scroll lock for 3 seconds =====
 (function () {
   if (window.scrollY != 0) {
     return;
@@ -207,7 +263,7 @@ trailerCards.forEach((card, index) => {
   window.addEventListener('touchmove', blockScroll, { passive: false });
   window.addEventListener('keydown', blockScroll, { passive: false });
 
-  // Unlock after 6 seconds
+  // Unlock after 3 seconds
   setTimeout(() => {
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
@@ -218,6 +274,7 @@ trailerCards.forEach((card, index) => {
   }, 3000);
 })();
 
+// Navbar link hover effect
 document.querySelectorAll('.navbar-links a').forEach((link) => {
   link.addEventListener('mouseenter', (e) => {
     const rect = link.getBoundingClientRect();
