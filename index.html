@@ -1,115 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Geoloup - Professional app and website development services. We create powerful desktop applications and responsive websites that scale."
-    />
-    <meta
-      name="keywords"
-      content="app development, website development, desktop apps, web apps, professional developer"
-    />
-    <meta name="author" content="Geoloup" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://geoloup.com/" />
-    <title>Geoloup - App & Website Development</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="dark-mode">
-    <script src="js/main.js"></script>
-    <nav class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo"></a>
-        <div class="nav-links">
-          <a href="index.html" class="active">Home</a>
-          <a href="projects.html">Projects</a>
-          <a href="pricing.html">Pricing</a>
-        </div>
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          aria-label="Toggle theme"
-        >
-          <span class="theme-toggle-light">☀️</span>
-          <span class="theme-toggle-dark">🌙</span>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Geoloup - desktop apps and websites. Send an email and tell us what you need." />
+  <meta name="keywords"
+    content="app development, website development, desktop apps, web apps, professional developer" />
+  <meta name="author" content="Geoloup" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://geoloup.com/" />
+  <title>Geoloup - Apps and websites</title>
+
+  <!-- Apply the saved theme before the page paints, so there is no flash -->
+  <script>
+    (function () {
+      var theme = "dark";
+      try {
+        var saved = localStorage.getItem("geoloup-theme");
+        if (saved === "light" || saved === "dark") theme = saved;
+      } catch (e) { }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Geoloup, home">
+        <img class="logo-img logo-on-dark" src="geoloup-logo-white.png" alt="Geoloup" width="480" height="125" />
+        <img class="logo-img logo-on-light" src="geoloup-logo-black.png" alt="" width="480" height="125" />
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <span class="nav-pill" aria-hidden="true"></span>
+        <a href="#hero" data-section="hero" class="active" aria-current="true">Home</a>
+        <a href="#services" data-section="services">What we do</a>
+        <a href="#projects" data-section="projects">Projects</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm">Get in touch</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" />
+            <path
+              d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" />
+          </svg>
         </button>
       </div>
-    </nav>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1>Creating Apps and Website</h1>
-            <p>
-              We develop powerful and reliable applications and websites for
-              users around the world, turning ideas into fully functional
-              digital solutions that are built to perform and scale.
-            </p>
-            <div class="hero-buttons">
-              <a href="projects.html" class="btn btn-primary">View Projects</a>
-              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <canvas class="hero-bg" id="hero-bg" aria-hidden="true"></canvas>
+      <div class="moon" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="hl hl-base">
+            <span class="line"><span class="w" style="--i:0">We</span> <span class="w"
+                style="--i:1">create</span></span>
+            <span class="line"><span class="w" style="--i:2">user</span></span>
+            <span class="line"><span class="w" style="--i:3">experiences.</span></span>
+          </h1>
+
+          <p class="lede">
+            We make Desktop apps and web apps, from scratch. (Landing page still in development)
+          </p>
+        </div>
+
+        <div class="stage" id="stage">
+          <figure class="win" id="win">
+            <div class="win-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <div class="win-tabs" role="tablist" aria-label="Example projects">
+                <button type="button" class="win-tab is-active" role="tab" id="tab-repviewer" aria-selected="true"
+                  aria-controls="shot-repviewer">RepViewer</button>
+                <button type="button" class="win-tab" role="tab" id="tab-cube" aria-selected="false"
+                  aria-controls="shot-cube" tabindex="-1">Cube solver</button>
+              </div>
             </div>
-          </div>
-          <div class="hero-image">
-            <img
-              src="ic-hat.png"
-              alt="Ic-hat - Example of our app development work"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="features">
-        <div class="container">
-          <h2>What we do</h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-icon">📱</div>
-              <h3>Desktop Apps</h3>
-              <p>Native and cross-platform mobile applications</p>
+            <div class="win-body">
+              <img class="shot is-active" id="shot-repviewer" role="tabpanel" aria-labelledby="tab-repviewer"
+                src="repviewer.png"
+                alt="RepViewer, a desktop app to browse, filter and rate recipes, shown with folders and recipe thumbnails"
+                width="1397" height="724" />
+              <img class="shot" id="shot-cube" role="tabpanel" aria-labelledby="tab-cube" src="cube-solver.png"
+                alt="A web app showing a 3D Rubik's cube with a control bar and device connection status" width="1600"
+                height="912" hidden />
             </div>
-            <div class="feature-card">
-              <div class="feature-icon">💻</div>
-              <h3>Web Apps</h3>
-              <p>Responsive and progressive web applications</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact">
-        <div class="container">
-          <h2>Let's Work Together</h2>
-          <p>Have a project in mind? Let's create something amazing.</p>
-          <a href="mailto:franckiebbb@gmail.com" class="btn btn-primary"
-            >Get in Touch</a
-          >
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">Geoloup</div>
-          <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="pricing.html">Pricing</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Geoloup. All rights reserved.</p>
+          </figure>
         </div>
       </div>
-    </footer>
-    <script src="https://devtool.geoloup.com/devtool.js"></script>
-  </body>
+
+      <a class="scroll-cue" href="#services" aria-label="Scroll down to what we do">
+        <span class="scroll-cue-text">Scroll</span>
+        <span class="scroll-cue-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="services" id="services">
+      <div class="container services-grid">
+        <h2 class="services-title">What we do</h2>
+
+        <div class="service-list">
+          <article class="service">
+            <h3>Desktop apps</h3>
+            <p>
+              Programs you install and run on your own computer. RepViewer, the recipe manager in the screenshot, is one
+              of ours. This is the right choice when you need to work with local files or plug in a device.
+            </p>
+            <ul class="tags">
+              <li>Local files</li>
+              <li>Works offline</li>
+              <li>USB and Bluetooth devices</li>
+            </ul>
+          </article>
+
+          <article class="service">
+            <h3>Web apps and websites</h3>
+            <p>
+              Things that open in a browser, with nothing to install. Our Rubik's cube solver controls a robot over USB
+              straight from the page. We also make plain websites like this one.
+            </p>
+            <ul class="tags">
+              <li>Phone and computer</li>
+              <li>Nothing to install</li>
+              <li>Talks to hardware</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="projects-head">
+          <h2>Projects</h2>
+          <p>Two things we have built.</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project">
+            <figure class="frame project-media">
+              <div class="win-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="frame-title">RepViewer</span>
+              </div>
+              <img src="repviewer.png"
+                alt="RepViewer, a desktop app to browse, filter and rate recipes, shown with folders and recipe thumbnails"
+                width="1397" height="724" loading="lazy" />
+            </figure>
+            <div class="project-text">
+              <h3>RepViewer</h3>
+              <p>
+                A desktop app that keeps your recipes in one place. Save recipes
+                from the web or write your own, sort them into folders, search them
+                and rate them from one to five hearts. Cooking mode stops the screen
+                from going to sleep while you cook.
+              </p>
+              <ul class="tags">
+                <li>Desktop app</li>
+                <li>Folders and search</li>
+                <li>Cooking mode</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project">
+            <figure class="frame project-media">
+              <div class="win-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="frame-title">Cube solver</span>
+              </div>
+              <img src="cube-solver.png"
+                alt="A web app showing a 3D Rubik's cube with a control bar and device connection status" width="1600"
+                height="912" loading="lazy" />
+            </figure>
+            <div class="project-text">
+              <h3>Cube solver</h3>
+              <p>
+                A web page that runs a robot solving a Rubik's cube. It shows the
+                cube in 3D, connects to a Gan smart cube and two LEGO SPIKE hubs, and
+                sends the moves to the motors.
+              </p>
+              <ul class="tags">
+                <li>Web app</li>
+                <li>Web Serial</li>
+                <li>LEGO SPIKE</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Got something to build?</h2>
+        <p class="contact-lede">Send us an email with what you have in mind and we will write back.</p>
+        <a class="contact-mail" href="mailto:franckiebbb@gmail.com">franckiebbb@gmail.com</a>
+        <div class="contact-actions">
+          <a href="mailto:franckiebbb@gmail.com" class="btn btn-primary">Get in touch</a>
+          <button type="button" class="btn btn-secondary" id="copy-mail" data-email="franckiebbb@gmail.com">Copy
+            email</button>
+        </div>
+        <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img class="logo-img logo-on-dark" src="geoloup-logo-white.png" alt="Geoloup" width="480" height="125" />
+          <img class="logo-img logo-on-light" src="geoloup-logo-black.png" alt="" width="480" height="125" />
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#hero">Home</a>
+          <a href="#services">What we do</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Geoloup. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <script src="home.js"></script>
+  <script src="https://devtool.geoloup.com/devtool.js"></script>
+</body>
+
 </html>
